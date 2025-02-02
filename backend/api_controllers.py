@@ -11,7 +11,7 @@ class StudentAchievements(Resource):
     @jwt_required()
     def get(self, student_id):
         user_email = get_jwt_identity()
-        user = User.query.filter_by(email=user_email).first()
+        user = User.query.filter_by(linked_student_id=student_id).first()
 
         if not user:
             return {"message": "User not found"}, 404
